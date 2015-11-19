@@ -1,0 +1,35 @@
+AppBundle\Entity\Downstream:
+    type: entity
+    table: null
+    repositoryClass: Pstryk\AppBundle\Entity\DownstreamRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        receiverNo:
+            type: integer
+        channelId:
+            type: integer
+        lockStatus:
+            type: string
+            length: '20'
+        frequency:
+            type: integer
+            column: frequency
+        modulation:
+            type: string
+            length: '7'
+        symbolRate:
+            type: integer
+        snr:
+            type: float
+        power:
+            type: float
+        dateTime:
+            type: datetime
+            column: datetime
+            default: CURRENT_TIMESTAMP
+    lifecycleCallbacks: {  }
