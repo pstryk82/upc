@@ -142,7 +142,17 @@ class ParserTest extends \PHPUnit_Framework_TestCase {
     }
 
     public function testParse() {
-        $this->parser->parse($this->content);
+        $downstreams = $this->parser->parse($this->content);
+        
+        $first = $downstreams->first();
+        $this->assertEquals(1, $first->getReceiverNo());
+        $this->assertEquals(3, $first->getChannelId());
+        $this->assertEquals('TAG_UPC_T38', $first->getLockStatus());
+        $this->assertEquals(802000000, $first->getFrequency());
+        $this->assertEquals('256QAM', $first->getModulation());
+        $this->assertEquals(6952000, $first->getSymbolRate());
+        $this->assertEquals(40.3, $first->getSnr());
+        $this->assertEquals(0.6, $first->getPower());
     }
     
 }

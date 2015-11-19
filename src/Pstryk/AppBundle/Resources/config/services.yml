@@ -1,4 +1,3 @@
 services:
-#    pstryk_app.example:
-#        class: Pstryk\AppBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+    app.http.parser:
+        class: Pstryk\AppBundle\Http\Parser
