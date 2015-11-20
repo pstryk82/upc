@@ -1,5 +1,7 @@
 <?php
 
+namespace Pstryk\AppBundle\Http;
+
 class Client {
     
     private $httpClient;

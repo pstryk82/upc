@@ -1,3 +1,27 @@
 services:
     app.http.parser:
         class: Pstryk\AppBundle\Http\Parser
+        
+    app.http.client:
+        class: Pstryk\AppBundle\Http\Client
+
+    app.manager.manager:
+        class: Pstryk\AppBundle\Manager\Manager
+        arguments:
+            - @doctrine.orm.default_entity_manager
+            - @app.http.parser
+            - @app.http.client
+
+
+#    app.downstream.repo:
+#        class: Pstryk\AppBundle\Entity\DownstreamRepository
+#        arguments:
+#            - @doctrine.entity.repository
+#    
+            
+#    acme_customer.customer_repository:
+#        class: Doctrine\ORM\EntityRepository
+#        factory_service: doctrine.orm.default_entity_manager
+#        factory_method: getRepository
+#        arguments:
+#            - Acme\CustomerBundle\Entity\Customer

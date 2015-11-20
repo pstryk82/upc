@@ -2,9 +2,6 @@
 
 namespace Pstryk\AppBundle\Entity;
 
-/**
- * Downstream
- */
 class Downstream
 {
     /**
