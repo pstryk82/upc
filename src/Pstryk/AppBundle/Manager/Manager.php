@@ -28,6 +28,14 @@ class Manager {
         $this->client = $client;
     }
 
+    public function getDataFromModem() {
+        $this->client->authorize();
+//        $downstreamData = $this->client->fetchDownstreamData();
+//        $this->client->unauthorize();
+        
+//        return $downstreamData;
+    }
+
     public function save($httpResponse) {
         $downstreams = $this->parser->parse($httpResponse);
         foreach ($downstreams as $downstream) {

@@ -33,8 +33,8 @@ class ManagerTest extends \PHPUnit_Framework_TestCase {
     public function setUp() {
         $this->entityManagerMock = $this->getMockBuilder(EntityManager::class)
                 ->disableOriginalConstructor()->getMock();
-        $this->parserMock = $this->getMockBuilder(Http\Parser::class)->getMock();
-        $this->clientMock = $this->getMockBuilder(Http\Client::class)->getMock();
+        $this->parserMock = $this->getMockBuilder(Http\Parser::class)->disableOriginalConstructor()->getMock();
+        $this->clientMock = $this->getMockBuilder(Http\Client::class)->disableOriginalConstructor()->getMock();
         $this->manager = new Manager($this->entityManagerMock, $this->parserMock, $this->clientMock);
     }
     
@@ -42,6 +42,12 @@ class ManagerTest extends \PHPUnit_Framework_TestCase {
         unset($this->entityManagerMock, $this->parserMock, $this->clientMock, $this->manager);
     }
     
+    public function testGetDataFromModem() {
+        $this->clientMock->method('authorize');
+        $this->clientMock->method('fetchDownstreamData')->willReturn(new ArrayCollection());
+        $this->clientMock->method('unauthotize');
+    }
+
     public function testSave() {
         $downstream = new Downstream();
         $downstream->setChannelId(3)

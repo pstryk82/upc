@@ -4,6 +4,15 @@ services:
         
     app.http.client:
         class: Pstryk\AppBundle\Http\Client
+        arguments:
+            - @guzzle.http.client
+            - %modem%
+
+    guzzle.http.client:
+        class: GuzzleHttp\Client
+        arguments:
+            - 
+                cookies: true
 
     app.manager.manager:
         class: Pstryk\AppBundle\Manager\Manager
