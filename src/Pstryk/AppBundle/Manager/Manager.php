@@ -30,10 +30,10 @@ class Manager {
 
     public function getDataFromModem() {
         $this->client->authorize();
-//        $downstreamData = $this->client->fetchDownstreamData();
-//        $this->client->unauthorize();
+        $httpResponse = $this->client->fetchDownstreamData();
+        $this->client->unauthorize();
         
-//        return $downstreamData;
+        return $httpResponse;
     }
 
     public function save($httpResponse) {

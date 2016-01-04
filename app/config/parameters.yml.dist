@@ -25,4 +25,6 @@ parameters:
         auth_check: /goform/login
         username: admin
         password: admin
+        data_url: /status/connection-downstream.asp
         user_agent: 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.86 Safari/537.36'
+        logout_url: /logout.asp

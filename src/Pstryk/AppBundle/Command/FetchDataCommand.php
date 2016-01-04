@@ -12,11 +12,12 @@ class FetchDataCommand extends ContainerAwareCommand {
         $this->setName('upc:fetch');
     }
             
-
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
     public function execute(InputInterface $input, OutputInterface $output) {
         $manager = $this->getContainer()->get('app.manager.manager');
-        
-        
         $dataFromModem = $manager->getDataFromModem();
         $manager->save($dataFromModem);
     }

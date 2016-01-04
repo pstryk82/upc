@@ -1,4 +1,4 @@
-AppBundle\Entity\Downstream:
+Pstryk\AppBundle\Entity\Downstream:
     type: entity
     table: null
     repositoryClass: Pstryk\AppBundle\Entity\DownstreamRepository

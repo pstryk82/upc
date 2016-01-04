@@ -34,7 +34,7 @@ class Client {
     public function authorize() {
         $csrfToken = $this->getCSRFToken();
         $body = sprintf(
-            'CSRFValue=%s&loginUserName=%s&loginPassword=%s&logoffUser=%s',
+            'CSRFValue=%s&loginUsername=%s&loginPassword=%s&logoffUser=%s',
             $csrfToken,
             $this->modemOptions['username'],
             $this->modemOptions['password'],
@@ -64,6 +64,9 @@ class Client {
         return $response->getStatusCode() == Response::HTTP_OK;
     }
     
+    /**
+     * @return string
+     */
     private function getCSRFToken() {
         $response = $this->httpClient->request(
             'GET',
@@ -82,4 +85,31 @@ class Client {
         return $matches[1];
     }
 
+    /**
+     * @return string
+     */
+    public function fetchDownstreamData() {
+        $response = $this->httpClient->get(
+            $this->modemOptions['url'] . $this->modemOptions['data_url'],
+            array(
+                'cookies' => $this->cookieJar,
+            )
+        );
+
+        return $response->getBody()->getContents();
+    }
+    
+    /**
+     * @return bool
+     */
+    public function unauthorize() {
+        $response = $this->httpClient->get(
+            $this->modemOptions['url'] . $this->modemOptions['logout_url'],
+            array(
+                'cookies' => $this->cookieJar
+            )
+        );
+        
+        return $response->getStatusCode() == Response::HTTP_OK;
+    }
 }
