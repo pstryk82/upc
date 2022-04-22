@@ -16,6 +16,7 @@ jobs:
           ls ${{ github.workspace }}
       - name: Build application
         run: |
-          composer install
+          ./composer.phar install
           bin/console cache:clear -e prod
+          vendor/phpunit/phpunit/phpunit
       - run: echo "🍏 This job's status is ${{ job.status }}."
