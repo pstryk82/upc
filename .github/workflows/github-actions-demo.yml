@@ -14,4 +14,8 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
+      - name: Build application
+        run: |
+          composer install
+          bin/console cache:clear -e prod
       - run: echo "🍏 This job's status is ${{ job.status }}."
